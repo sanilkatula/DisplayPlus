@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreGraphics
 import Foundation
+import AppKit
 
 private enum DisplaySubsection: String {
     case resolution
@@ -95,6 +96,10 @@ struct DisplayPanelView: View {
                 }
                 .padding()
             }
+
+            Divider()
+
+            footer
         }
         .frame(width: 540, height: 780)
     }
@@ -149,6 +154,27 @@ struct DisplayPanelView: View {
             .buttonStyle(.plain)
         }
         .padding()
+    }
+
+    private var footer: some View {
+        HStack {
+            Text("Display+")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+
+            Button {
+                NSApp.terminate(nil)
+            } label: {
+                Label("Quit", systemImage: "power")
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+            .help("Quit Display+")
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 10)
     }
 
     private func globalStatusMessage(_ message: String, isError: Bool) -> some View {
