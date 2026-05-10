@@ -1,17 +1,22 @@
-//
-//  Display_App.swift
-//  Display+
-//
-//  Created by SANIL KATULA on 5/9/26.
-//
-
 import SwiftUI
+import AppKit
 
 @main
-struct Display_App: App {
+struct DisplayPlusApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Settings {
+            EmptyView()
         }
+    }
+}
+
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    private var statusBarController: StatusBarController?
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        NSApp.setActivationPolicy(.accessory)
+        statusBarController = StatusBarController()
     }
 }
